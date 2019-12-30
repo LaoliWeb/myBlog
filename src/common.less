@@ -1,0 +1,148 @@
+@container: 1000px;
+
+// color
+@main: #BFEBFF;  // rgba(191, 235, 255);
+@red: #ff2727;
+@orange: #ff9900;
+@blue: #3399ff;
+@gray: #808080;
+
+// text
+@bc: #333333; // 主文本颜色
+@sc: #666666; // 次文本颜色
+@tc: #b3b3b3; // 第三文本颜色
+@oc: #808080; // 其他文本颜色
+@lc: #e6e6e6; // 边框或边界线颜色
+@lc2: #f2f2f2; // 边框或边界线颜色2
+
+// px转化为rem
+.remMixin() {
+  @functions: ~`(function() {
+    // 以设计稿宽度375px的转化
+    var clientWidth = 375;
+    this.rem = function(size) {
+      return size / clientWidth * 10 + 'rem';
+    }
+
+    // 直接font-size: 14px的情况转化转化
+    // this.rem = function(size) {
+    //     return size / 14 + 'rem';
+    // }
+  })()`;
+}
+.remMixin();
+
+/**
+  文本超过范围使用省略号表示
+  @n: 在第几行使用省略号
+*/
+.pp(@n: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Firefox */
+  display: -moz-box;
+  /* autoprefixer: off */
+  -moz-box-orient: vertical;
+
+  /* Safari, Opera, and Chrome */
+  display: -webkit-box;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+
+  /* W3C */
+  display: box;
+  /* autoprefixer: off */
+  box-orient: vertical;
+  -webkit-line-clamp: @n;
+}
+
+// 文本超过范围使用省略号表示（单行）
+.ot {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+// 清浮动
+.cf {
+  display: table;
+  content: '';
+  clear: both;
+}
+
+// 字体大小
+.fs(@fs: 14px, @fw: ~'normal') {
+  font-size: @fs;
+  font-weight: @fw;
+}
+
+// 字体家族
+.ff(@fs: 14px, @ff: ~'Finger Paint') {
+  font-size: @fs;
+  font-family: @ff;
+}
+
+// 定位
+.pt(@p: ~'absolute', @t: 0, @r: 0, @b: 0, @l: 0) {
+  position: @p;
+  top: @t;
+  right: @r;
+  bottom: @b;
+  left: @l;
+}
+
+// 圆角
+.br(@n: 4px) {
+  border-radius: @n;
+}
+
+// 阴影
+.bs(@x: 5px, @y: 5px, @s: 10px, @c: ~'rgba(191, 235, 255, .4)') {
+  box-shadow: @x @y @s @c;
+}
+
+// input框placeholder样式
+.ip(@c: #999, @fs: 14px) {
+  input::-webkit-input-placeholder,
+  input:-moz-placeholder,
+  input::-moz-placeholder,
+  input:-ms-input-placeholder {
+    color: @c;
+    font-size: @fs;
+  }
+}
+
+/* 垂直居中，需知父级高度 */
+.v-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 过渡
+.tst(@pr: ~'all', @du: .5s, @tf: ~'ease-in-out') {
+  transition: @pr @du @tf;
+  -webkit-transition: @pr @du @tf;
+  -moz-transition: @pr @du @tf;
+  -o-transition: @pr @du @tf;
+}
+
+// 变换
+.tsf(@tf: ~'scale(1)') {
+  transform: @tf;
+  -ms-transform: @tf; 	/* IE 9 */
+  -moz-transform: @tf; 	/* Firefox */
+  -webkit-transform: @tf; /* Safari 和 Chrome */
+  -o-transform: @tf;
+}
+
+
+

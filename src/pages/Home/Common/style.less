@@ -1,0 +1,101 @@
+@import '~@/common.less';
+
+/** NavMenu */
+.navMenu {
+    width: 100%;
+    padding: 50px 0;
+}
+.navMenuCon {
+    height: 120px;
+    margin: 0 auto;
+    padding: 0 20px;
+    .br(25px);
+    background-color: #FFF;
+    box-shadow: 5px 5px 10px rgba(191, 235, 255, .8);
+    & > li {
+        .fl;
+        .tst(~'all', .3s, ~'ease-in-out');
+        width: 140px;
+        height: 120px;
+        padding: 25px 0;
+        text-align: center;
+        cursor: pointer;
+        .navIcon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        .navText {
+            padding: 5px 0;
+            text-transform: uppercase;
+            .ff;
+        }
+        &:hover {
+            .tsf(~'scale(1.05)');
+            & > b {
+                width: 120px;
+            }
+            .navIcon {
+                background-image: url(@/assets/icon_blue_50.png) !important;
+            }
+            .navText {
+                color: @main;
+            }
+        }
+        & > b {
+            display: block;
+            width: 0px;
+            margin: 0 auto;
+            .tst(~'all', .3s, ~'ease-in-out');
+            border-bottom: 4px solid @main;
+        }
+    }
+}
+.navMenuCon::after { .cf }
+
+/** AboutMe */
+.aboutMe {
+  width: 250px;
+  margin: 20px 0;
+  padding: 20px;
+  .br(10px);
+  // box-shadow: -5px -5px 10px rgba(191, 235, 255, .8);
+  box-shadow: 5px 5px 10px rgba(191, 235, 255, .8);
+  .title {
+    padding-bottom: 10px;
+    color: @bc;
+    font: 20px "Finger Paint";
+    font-weight: bold;
+    text-align: center;
+  }
+  > b {
+    display: block;
+    margin: 0 auto;
+    width: 60px;
+    height: 3px;
+    background-color: @main;
+  }
+  .avatar {
+    display: block;
+    margin: 30px auto;
+    height: 100px;
+    width: 100px;
+    .br(~'50%');
+  }
+  .text1 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+    > span {
+      font-size: 18px;
+      font-weight: bold;
+      color: @main;
+    }
+  }
+  .text2 {
+    line-height: 1.8;
+    color: @sc;
+    text-indent: 2em;
+    font-size: 14px;
+  }
+}
