@@ -292,20 +292,25 @@
         height: 160px;
         .br(10px);
         background-image: linear-gradient(to left, #BFEBFF, #FFF);
-        .tsf(~'rotate(-8deg)');
-        &:hover {
-          .tsf(~'rotate(0deg)');
-        }
+        // .tsf(~'rotate(-8deg)');
         .imgCon {
-          .pt(~'relative', -24px, 0, 0, 20px);
+          .tst(~'all', .5s, ~'ease-in-out');
+          .pt(~'relative', 24px, 0, 0, 20px);
           .br(~'50%');
           padding: 10px;
           background-color: #FFF;
           background-image: linear-gradient(to bottom, #BFEBFF, #FFF);
-          >img {
+          > img {
             width: 100%;
             .br(~'50%');
           }
+        }
+        .hiddnText {
+          .tst(~'all', .5s, ~'ease-in-out');
+          .pt(~'relative', 20px);
+          .ff(16px);
+          text-align: center;
+          opacity: 0;
         }
         .txtCon {
           padding: 10px;
@@ -317,6 +322,16 @@
           text-indent: 2em;
           line-height: 20px;
           .pp(3);
+        }
+        &:hover {
+          // .tsf(~'rotate(0deg)');
+          .imgCon {
+            .pt(~'relative', -24px, 0, 0, 20px);
+          }
+          .hiddnText {
+            opacity: 1;
+            top: 30px;
+          }
         }
       }
       .line {
@@ -351,95 +366,102 @@
     }
   }
   .showFour {
+    @lineLen: 150;
     position: relative;
     height: 250px;
     margin-bottom: 50px;
+    .imgCon {
+      .tst(~'all', .5s, ~'ease-in-out');
+      .pt(~'absolute', 20px);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      z-index: -1;
+      >img {
+        width: 100%;
+        .br(~'50%');
+      }
+    }
     .lineCon {
       .commonCon;
       .pt(~'absolute');
-      .tsf(~'rotate(5deg) skewX(-30deg)');
+      // .tsf(~'skewX(-30deg)');
       height: 200px;
       background-image: linear-gradient(to right, #BFEBFF, #FFF);
       box-shadow: 5px -5px 10px rgba(191, 235, 255, .4);
+      .title_date {
+        .title_date();
+        padding: 0 10px;
+      }
+      .lineText {
+        .showOne.lineCon.lineText();
+        margin-bottom: 20px;
+      }
+      .endText {
+        .showOne.lineCon.endText()
+      }
+      .readMore {
+        .showOne.lineCon.readMore()
+      }
     }
-    .line {
+    > i {
+      display: none;
+    }
+    &:hover {
+      .lineCon {
+        // .tsf(~'rotate(5deg) skewX(-30deg)');
+        .tsf(~'skewX(-20deg)');
+      }
+      .imgCon {
+        left: -50px;
+      }
+      > i {
+        display: block;
+      }
+    }
+    .commonLine(@n: 0, @t: 0s) {
+      @time: 0.01s;     //延迟时间
       .pt(~'absolute');
-      .tst(~'all', .5s, ~'ease-in-out');
-      width: 680px;
-      height: 200px;
-      .lineTop {
-        .pt;
-        width: 100px;
-        height: 3px;
-        .br(25px);
-        background-color: @main;
-        animation: topWidth 3.4s linear infinite;
-        z-index: -1;
+      width: 5px;
+      height: 5px;
+      background: #FFF;
+      .br(~'50%');
+      animation: mymove 6s @time*@n+@t linear infinite;
+      -moz-animation: mymove 6s @time*@n+@t linear infinite; /* Firefox */
+      -webkit-animation: mymove 6s @time*@n+@t linear infinite; /* Safari and Chrome */
+      -o-animation: mymove 6s @time*@n+@t linear infinite; /* Opera */
+    }
+    .loop(@i) when (@i <= @lineLen) and (@i <= (@lineLen/3)) {
+      i:nth-child(@{i}) {
+        .commonLine(@i - 1);
       }
-      .lineRight {
-        .pt(~'absolute', 0, 0, 0, 680px);
-        width: 3px;
-        height: 100px;
-        .br(25px);
-        background-color: @main;
-        animation: rightHeight 1s 3.4s linear infinite;
-        z-index: 999;
+      .loop(@i+1);
+    }
+    .loop(@i) when (@i <= @lineLen) and (@i > (@lineLen/3)) and (@i <= (@lineLen*2/3)) {
+      i:nth-child(@{i}) {
+        .commonLine(@i - 1, 1.2s);
       }
-      .lineBottom {
-        .pt(~'absolute', 200px, 0, 0, 0);
-        width: 100px;
-        height: 3px;
-        .br(25px);
-        background-color: @main;
-        .tsf(~'rotate(-180deg)');
-        animation: bottomWidth 3.4s 4.4s linear infinite;
-        z-index: 999;
+      .loop(@i+1);
+    }
+    .loop(@i) when (@i <= @lineLen) and (@i > (@lineLen*2/3)) {
+      i:nth-child(@{i}) {
+        .commonLine(@i - 1, 2.4s);
       }
-      .lineLeft {
-        .pt(~'absolute');
-        width: 3px;
-        height: 100px;
-        .br(25px);
-        background-color: @main;
-        .tsf(~'rotate(-180deg)');
-        animation: leftHeight 1s 7.8s linear infinite;
-        z-index: 999;
-      }
-      @keyframes topWidth {
-        from {
-          left: 0;
-        }
-        to {
-          left: 530px;
-        }
-      }
-      @keyframes rightHeight {
-        from {
-          top: 0;
-        }
-        to {
-          top: 50px;
-        }
-      }
-      @keyframes bottomWidth {
-        from {
-          left: 530px;
-        }
-        to {
-          left: 0;
-        }
-      }
-      @keyframes leftHeight {
-        from {
-          top: 50px;
-        }
-        to {
-          top: 0;
-        }
-      }
+      .loop(@i+1);
+    }
+    .loop(0);
+
+    @keyframes mymove
+    {
+      0%   { top: 0px; left: 0px; background: #FFF; z-index: -1; }
+      38.6%  { top: 0px; left: 680px; background: @main; z-index: 10; }
+      50%  { top: 200px; left: 680px; background: @main; z-index: -1; }
+      88.6%  { top: 200px; left: 0px; background: @main; z-index: -1; }
+      100% { top: 0px; left: 0px; background: #FFF; z-index: -1; }
     }
   }
 }
+
 
 /** XErrText */
 .XErrText {
@@ -560,3 +582,26 @@
     }
   }
 }
+
+
+/** XFooter */
+.footer {
+  height: 300px;
+  margin-top: 100px;
+  .footerCon {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(191, 235, 255, .2);
+    color: #FFF;
+    .mainCon {
+      width: 1200px;
+      margin: 0 auto;
+      .mainItem {
+        text-align: center;
+      }
+    }
+  }
+}
+

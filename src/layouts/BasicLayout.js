@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import styles from './BasicLayout';
+import { XFooter } from "@/components";
+import styles from './BasicLayout.less';
 
 class BasicLayout extends Component {
     state={
@@ -9,9 +10,9 @@ class BasicLayout extends Component {
         const { children } = this.props;
 
         return (
-            <div className={styles.normal}>
-                {/* <h1 className={styles.title}>Yay! Welcome to umi!</h1> */}
-                {children}
+            <div className={styles.layoutCon}>
+              {children}
+              <XFooter />
             </div>
         )
     }

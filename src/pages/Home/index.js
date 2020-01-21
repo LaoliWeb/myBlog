@@ -23,9 +23,9 @@ class Home extends Component {
             <div className={styles.about}><AboutMe /></div>
             <div className={styles.myTitle}>
               {/* <span>LAOLI丶</span> */}
-              <XErrText text='I like you,but just like you'/>
+              {/* <XErrText text='I like you,but just like you'/> */}
             </div>
-            <div className={styles.about}><AboutMe /></div>
+            {/* <div className={styles.about}><AboutMe /></div> */}
             {/* <div className={styles.show}>
               <XShow />
               <XShow />
