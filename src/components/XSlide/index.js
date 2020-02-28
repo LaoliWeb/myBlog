@@ -26,7 +26,7 @@ class XSlide extends Component {
         ],
         style: {}, // 样式
         tipsStyle: {}, // 提示语样式
-        autoPlay: true, // 自动播放
+        autoPlay: false, // 自动播放
         autoPlayTime: 3, // 自动播放间隔，默认3秒
     }
 

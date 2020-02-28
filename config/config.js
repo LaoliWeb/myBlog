@@ -36,4 +36,22 @@ export default {
             },
         ],
     },
+    // 浏览器适配
+    autoprefixer: {
+      browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie> 8'],
+      flexbox: true,
+    },
+
+    // 主题颜色
+    theme: {
+      'primary-color': '#87CEEB',
+      'link-color': '#333',
+      'text-color': '#333',
+      'text-color-secondary': '#b3b3b3',
+      'success-color': '#4996E3',
+      'error-color': '#ff2727',
+      'body-background': '#fff',
+      'link-hover-color': '#4996E3',
+      'border-color-base': '#e6e6e6',
+    },
 }
